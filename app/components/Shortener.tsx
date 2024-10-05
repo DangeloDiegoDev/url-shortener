@@ -20,7 +20,7 @@ export default function Shortener() {
 
     return (
         <div className="flex flex-col justify-center items-center h-full gap-8">
-            <label htmlFor="userInput">
+            <label htmlFor="userInput" className="cursor-pointer">
                 Paste your link below ↓
             </label>
             <input id="userInput" className="p-4 cursor-pointer rounded-md outline-none ring-2 ring-red-500 focus:ring-white bg-slate-950 hover:bg-slate-900" onChange={(e) => setUserLink(e.target.value)} />

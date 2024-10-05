@@ -9,7 +9,7 @@ export async function GET() {
     })
 
     const filteredUsers = allUsers.filter((e) =>
-        (Number(new Date()) - Number(e.lastShortDate)) / 8.64e+7 > 3
+        (Number(new Date()) - Number(e.lastShortDate)) / 8.64e+7 > 30
     )
 
     filteredUsers.forEach(async (e) => {
