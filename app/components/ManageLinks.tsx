@@ -38,7 +38,7 @@ export default function ManageLinks() {
     }
 
     function Loading() {
-        return <p className="text-center">🌀 Loading...</p>
+        return <p className="my-auto text-center">🌀 Loading...</p>
     }
 
     function handleEdit() {
@@ -73,7 +73,7 @@ export default function ManageLinks() {
     }
 
     return <>
-        <div className="flex flex-col gap-6 max-sm:mb-6 sm:my-6">
+        <div className={`flex flex-col gap-6 max-sm:mb-6 sm:my-6 ${userLinks.length === 0 && 'h-full'}`}>
             {userLinks.length === 0 && <Loading />}
             {typeof (userLinks) === 'string' ? <p className="text-center">{userLinks}</p> :
                 userLinks.map((e: any, index: any) => (
