@@ -64,19 +64,19 @@ export default function Signup() {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
             <label htmlFor="name" className="hover:text-red-500 cursor-pointer">Name</label>
             <input id="name" {...register("name")} className="p-1 outline-none focus:ring-2 focus:ring-red-500 rounded-sm text-black" />
-            {errors.name?.message && <p>{errors.name.message}</p>}
+            {errors.name?.message && <p className="text-center text-red-400">{errors.name.message}</p>}
             <label htmlFor="nickname" className="hover:text-red-500 cursor-pointer">Nickname</label>
             <input id="nickname" {...register("nickname")} className="p-1 outline-none focus:ring-2 focus:ring-red-500 rounded-sm text-black" />
-            {errors.nickname?.message && <p>{errors.nickname.message}</p>}
+            {errors.nickname?.message && <p className="text-center text-red-400">{errors.nickname.message}</p>}
             <label htmlFor="email" className="hover:text-red-500 cursor-pointer">Email</label>
             <input id="email" {...register("email")} className="p-1 outline-none focus:ring-2 focus:ring-red-500 rounded-sm text-black" />
-            {errors.email?.message && <p>{errors.email.message}</p>}
+            {errors.email?.message && <p className="text-center text-red-400">{errors.email.message}</p>}
             <label htmlFor="password" className="hover:text-red-500 cursor-pointer">Password</label>
             <input id="password" type="password" {...register("password")} className="p-1 outline-none focus:ring-2 focus:ring-red-500 rounded-sm text-black" />
-            {errors.password?.message && <p>{errors.password.message}</p>}
+            {errors.password?.message && <p className="text-center text-red-400">{errors.password.message}</p>}
             <label htmlFor="confirm-password" className="hover:text-red-500 cursor-pointer">Confirm password</label>
             <input id="confirm-password" type="password" {...register("confirmPassword")} className="p-1 outline-none focus:ring-2 focus:ring-red-500 rounded-sm text-black" />
-            {errors.confirmPassword?.message && <p>{errors.confirmPassword.message}</p>}
+            {errors.confirmPassword?.message && <p className="text-center text-red-400">{errors.confirmPassword.message}</p>}
             <button type="submit" className="hover:text-red-500">Sign up</button>
         </form>
     )

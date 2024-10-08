@@ -53,7 +53,10 @@ export default function ManageLinks() {
     async function handleUpdate() {
         const error = await updateUserLink(selectedLink.id, selectedLink.authorId, selectedLinkShortLink, selectedLinkDestination);
         setError(error);
-        if (!error) setIsEditing(false);
+        if (!error) {
+            setIsEditing(false);
+            dialogRef.current!.close();
+        }
     }
 
     function closeModal(e: React.MouseEvent<HTMLDialogElement>) {
@@ -70,11 +73,11 @@ export default function ManageLinks() {
     }
 
     return <>
-        <div className="overflow-y-auto gap-6">
+        <div className="flex flex-col gap-6 max-sm:mb-6 sm:my-6">
             {userLinks.length === 0 && <Loading />}
             {typeof (userLinks) === 'string' ? <p className="text-center">{userLinks}</p> :
                 userLinks.map((e: any, index: any) => (
-                    <div key={index} className="border-2 rounded-md break-all p-2 cursor-pointer hover:bg-gray-900" onClick={() => handleDialogRef(index)}>
+                    <div key={index} className="border-2 rounded-md break-all p-2 cursor-pointer hover:bg-gray-900 max-sm:mx-4" onClick={() => handleDialogRef(index)}>
                         <span className="text-red-500">Short link: </span><span>{`${process.env.NEXT_PUBLIC_URL}/${e.shortened}`}</span><br></br>
                         <span className="text-red-500">Destination: </span><span>{e.original}</span>
                     </div>
@@ -83,7 +86,7 @@ export default function ManageLinks() {
         </div>
         <dialog ref={dialogRef} onClick={(e) => closeModal(e)} className="bg-transparent backdrop:backdrop-blur-md w-3/4">
             <div className="h-[calc(100vh-calc(100vh*0.25))] text-white rounded-md flex flex-col justify-between">
-                <div className="backdrop-blur-md h-5/6 flex flex-col justify-center text-xl gap-8">
+                <div className="sm:backdrop-blur-md h-5/6 flex flex-col justify-start text-xl gap-8 overflow-y-auto">
                     <div className="self-center w-2/4 text-end">
                         <button onClick={handleCancel} className="border-2 rounded-full w-8 hover:bg-gray-800">X</button>
                     </div>
@@ -91,18 +94,18 @@ export default function ManageLinks() {
                         <label htmlFor="shortLink">
                             <span className="text-red-500 cursor-pointer">Short link</span>
                         </label>
-                        {isEditing ? <input id="shortLink" ref={selectedLinkShortLinkRef} onChange={(e) => setSelectedLinkShortLink(e.target.value)} defaultValue={selectedLinkShortLink} className="w-2/4 border-2 rounded-md p-2 bg-transparent outline-none focus:border-red-500 hover:bg-gray-900" /> : <p className="w-2/4 border-2 rounded-md p-2">{selectedLinkShortLink}</p>}
-                        {error?.shortLink && <p>{error.shortLink}</p>}
+                        {isEditing ? <input id="shortLink" ref={selectedLinkShortLinkRef} onChange={(e) => setSelectedLinkShortLink(e.target.value)} defaultValue={selectedLinkShortLink} className="w-2/4 border-2 rounded-md p-2 bg-transparent outline-none focus:border-red-500 hover:bg-gray-900" /> : <p className="w-2/4 border-2 rounded-md p-2 break-all">{selectedLinkShortLink}</p>}
+                        {error?.shortLink && <p className="text-red-400">{error.shortLink}</p>}
                     </div>
                     <div className="flex flex-col items-center justify-center gap-4">
                         <label htmlFor="destination">
                             <span className="text-red-500 cursor-pointer">Destination</span>
                         </label>
-                        {isEditing ? <input id="destination" onChange={(e) => setSelectedLinkDestination(e.target.value)} defaultValue={selectedLinkDestination} className="w-2/4 border-2 rounded-md p-2 bg-transparent outline-none focus:border-red-500 hover:bg-gray-900" /> : <p className="w-2/4 border-2 rounded-md p-2">{selectedLinkDestination}</p>}
-                        {error?.destination && <p>{error.destination}</p>}
+                        {isEditing ? <input id="destination" onChange={(e) => setSelectedLinkDestination(e.target.value)} defaultValue={selectedLinkDestination} className="w-2/4 border-2 rounded-md p-2 bg-transparent outline-none focus:border-red-500 hover:bg-gray-900" /> : <p className="w-2/4 border-2 rounded-md p-2 break-all">{selectedLinkDestination}</p>}
+                        {error?.destination && <p className="text-red-400">{error.destination}</p>}
                     </div>
                 </div>
-                <div className="backdrop-blur-md h-1/6 flex items-center justify-center">
+                <div className="sm:backdrop-blur-md h-1/6 flex items-center justify-center">
                     <div className="flex gap-8 text-xl">
                         {!isEditing ? <button onClick={handleEdit} className="hover:text-gray-400">Edit</button> : <>
                             <button ref={updateBtnRef} onClick={handleUpdate} disabled={selectedLinkDestination === selectedLink.original && selectedLinkShortLink === selectedLink.shortened} className="hover:text-gray-400">Update</button>

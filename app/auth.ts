@@ -41,10 +41,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 })
 
 export const signupSchema = z.object({
-  name: z.string().min(2).max(20, { message: "Name must contain at most 20 characters" }),
-  nickname: z.string().max(20, { message: "Nickname must contain less than or 20 characters" }),
-  email: z.string().email({ message: "Email invalid" }),
-  password: z.string().min(8, { message: "Password must contain at least 8 characters" }).max(20, { message: "Password must contain less than or 20 characters" }),
+  name: z.string().min(2, { message: "Name must contain at least 2 characters" }).max(20, { message: "Name must contain at most 20 characters" }),
+  nickname: z.string().min(1, { message: "Nickname must contain at least 1 character" }).max(20, { message: "Nickname must contain at most 20 characters" }),
+  email: z.string().email({ message: "Email is invalid" }),
+  password: z.string().min(8, { message: "Password must contain at least 8 characters" }).max(20, { message: "Password must contain at most 20 characters" }),
   confirmPassword: z.string()
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords do not match",

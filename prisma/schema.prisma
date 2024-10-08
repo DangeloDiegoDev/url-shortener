@@ -21,6 +21,7 @@ model User {
   avatar String @db.VarChar(255) @default("/avatar.svg")
   links Links[]
   lastShortDate DateTime @default(now())
+  firstTime Boolean @default(true)
 }
 
 model Links {

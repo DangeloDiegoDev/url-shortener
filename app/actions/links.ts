@@ -21,8 +21,8 @@ export async function getUserLinks() {
 }
 
 export async function updateUserLink(linkId: number, authorId: number, shortLink: string, destination: string) {
-    const shortLinkSchema = z.string().min(1).max(7);
-    const destinationSchema = z.string().min(1).includes(".");
+    const shortLinkSchema = z.string().min(1, { message: "Min characters = 1" }).max(7, { message: "Max characters = 7" });
+    const destinationSchema = z.string().min(1, { message: "Min characters = 1" }).includes(".", { message: "Malformed link" });
 
     const shortLinkResult = await shortLinkSchema.safeParseAsync(shortLink);
     const destinationResult = await destinationSchema.safeParseAsync(destination);

@@ -28,9 +28,9 @@ export default function Login() {
         <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-4">
             <label htmlFor="nickname" className="hover:text-red-500 cursor-pointer">Nickname</label>
             <input id="nickname" name="nickname" ref={nicknameRef} type="text" className="p-1 outline-none focus:ring-2 focus:ring-red-500 rounded-sm text-black" />
-            {error && <p>{error}</p>}
             <label htmlFor="password" className="hover:text-red-500 cursor-pointer">Password</label>
             <input id="password" name="password" ref={passwordRef} type="password" className="p-1 outline-none focus:ring-2 focus:ring-red-500 rounded-sm text-black" />
+            {error && <p className="text-center text-red-400">{error}</p>}
             <button type="submit" className="hover:text-red-500">Sign in</button>
         </form>
     )

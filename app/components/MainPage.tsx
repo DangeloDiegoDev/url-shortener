@@ -16,8 +16,9 @@ export default async function MainPage() {
                     <Shortener />
                 </div>
             </div>
-            <div>
-                <p className="p-2 bg-red-900 rounded-t-none rounded-md cursor-default">Links and users are deleted upon 30 days</p>
+            <div className="w-3/4 p-2 rounded-t-none rounded-md cursor-default text-center text-sm">
+                <p>Inactive users are deleted every start of month.</p>
+                <p>Inactive = last shortened link {'>'} 30 days</p>
             </div>
         </div>
     )

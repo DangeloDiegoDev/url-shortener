@@ -22,10 +22,11 @@ export async function shortenLink(link: string) {
     }
 
     const currentDate = Number(new Date());
-    const lastShortDate = await getLastShortDate() as number;
+    const lastShortDate = await getLastShortDate(email) as number;
     const timeDiff = (currentDate - lastShortDate) / 60000;
+    const firstTime = await isFirstTime(email);
 
-    if (timeDiff < 1 && timeDiff > 0) {
+    if (!firstTime && timeDiff < 1 && timeDiff > 0) {
         return { error: 'No podés tan rápido esperá 1 minuto' }
     }
 
@@ -52,6 +53,7 @@ export async function shortenLink(link: string) {
         },
         data: {
             lastShortDate: new Date(),
+            firstTime: false,
             links: {
                 create: {
                     original: link,
@@ -64,23 +66,28 @@ export async function shortenLink(link: string) {
     return { message: uuid }
 }
 
-export async function getLastShortDate() {
-    const email = await verifyToken();
-
-    if (email) {
-        const lastShortDate = await prisma.user.findFirst({
-            select: {
-                lastShortDate: true
-            },
-            where: {
-                email: email
-            }
-        })
-        if (!lastShortDate) {
-            return Number(new Date());
+export async function getLastShortDate(email: string) {
+    const lastShortDate = await prisma.user.findFirst({
+        select: {
+            lastShortDate: true
+        },
+        where: {
+            email
         }
-        return Number(lastShortDate.lastShortDate)
-    }
+    })
+    return Number(lastShortDate!.lastShortDate)
+}
+
+async function isFirstTime(email: string) {
+    const isFirstTime = await prisma.user.findFirst({
+        select: {
+            firstTime: true
+        },
+        where: {
+            email
+        }
+    })
+    return isFirstTime!.firstTime
 }
 
 export async function generateJweToken(email: string) {

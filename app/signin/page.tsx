@@ -32,14 +32,14 @@ export default function SignInPage() {
 
   return (
     <div className="bg-slate-950 min-h-screen flex justify-center text-white">
-      <div className="w-2/4 my-5 ring-2 ring-red-500 rounded-md">
+      <div className="w-2/4 max-sm:w-3/4 my-5 ring-2 ring-red-500 rounded-md">
         <div className="h-full flex flex-col items-center gap-10">
           <h1 className="border-b-2 border-red-500 w-full text-center py-5 text-3xl">SIGN IN</h1>
           {switcher ? <button onClick={toggleOptions} className="hover:text-red-500">Log in with credentials</button> : <button onClick={toggleOptions} className="hover:text-red-500">Register with credentials</button>}
           {switcher ?
-            <div onAnimationEnd={setOptionsBoolean} ref={credentialsLogin} className="h-0 overflow-y-clip">
+            <div onAnimationEnd={setOptionsBoolean} ref={credentialsLogin} className="max-sm:w-full px-10 h-0 overflow-y-clip">
               <Login />
-            </div> : <div onAnimationEnd={setOptionsBoolean} ref={credentialsSignup} className="h-0 overflow-y-clip">
+            </div> : <div onAnimationEnd={setOptionsBoolean} ref={credentialsSignup} className="max-sm:w-full px-10 h-0 overflow-y-clip">
               <Signup />
             </div>
           }
