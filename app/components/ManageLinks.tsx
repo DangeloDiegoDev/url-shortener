@@ -38,7 +38,7 @@ export default function ManageLinks() {
     }
 
     function Loading() {
-        return <p className="my-auto text-center">🌀 Loading...</p>
+        return <p className="text-center">🌀 Loading...</p>
     }
 
     function handleEdit() {
@@ -73,7 +73,7 @@ export default function ManageLinks() {
     }
 
     return <>
-        <div className={`flex flex-col gap-6 max-sm:mb-6 sm:my-6 ${userLinks.length === 0 && 'h-full'}`}>
+        <div className="flex flex-col gap-6 my-auto h-fit">
             {userLinks.length === 0 && <Loading />}
             {typeof (userLinks) === 'string' ? <p className="text-center">{userLinks}</p> :
                 userLinks.map((e: any, index: any) => (
@@ -94,14 +94,14 @@ export default function ManageLinks() {
                         <label htmlFor="shortLink">
                             <span className="text-red-500 cursor-pointer">Short link</span>
                         </label>
-                        {isEditing ? <input id="shortLink" ref={selectedLinkShortLinkRef} onChange={(e) => setSelectedLinkShortLink(e.target.value)} defaultValue={selectedLinkShortLink} className="w-2/4 border-2 rounded-md p-2 bg-transparent outline-none focus:border-red-500 hover:bg-gray-900" /> : <p className="w-2/4 border-2 rounded-md p-2 break-all">{selectedLinkShortLink}</p>}
+                        {isEditing ? <input id="shortLink" ref={selectedLinkShortLinkRef} onChange={(e) => setSelectedLinkShortLink(e.target.value)} defaultValue={selectedLinkShortLink} className="sm:w-2/4 max-sm:w-full border-2 rounded-md p-2 bg-transparent outline-none focus:border-red-500 hover:bg-gray-900" /> : <p className="sm:w-2/4 max-sm:w-full border-2 rounded-md p-2 break-all">{selectedLinkShortLink}</p>}
                         {error?.shortLink && <p className="text-red-400">{error.shortLink}</p>}
                     </div>
                     <div className="flex flex-col items-center justify-center gap-4">
                         <label htmlFor="destination">
                             <span className="text-red-500 cursor-pointer">Destination</span>
                         </label>
-                        {isEditing ? <input id="destination" onChange={(e) => setSelectedLinkDestination(e.target.value)} defaultValue={selectedLinkDestination} className="w-2/4 border-2 rounded-md p-2 bg-transparent outline-none focus:border-red-500 hover:bg-gray-900" /> : <p className="w-2/4 border-2 rounded-md p-2 break-all">{selectedLinkDestination}</p>}
+                        {isEditing ? <input id="destination" onChange={(e) => setSelectedLinkDestination(e.target.value)} defaultValue={selectedLinkDestination} className="sm:w-2/4 max-sm:w-full border-2 rounded-md p-2 bg-transparent outline-none focus:border-red-500 hover:bg-gray-900" /> : <p className="sm:w-2/4 max-sm:w-full border-2 rounded-md p-2 break-all">{selectedLinkDestination}</p>}
                         {error?.destination && <p className="text-red-400">{error.destination}</p>}
                     </div>
                 </div>
