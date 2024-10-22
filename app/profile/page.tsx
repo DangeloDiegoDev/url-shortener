@@ -18,13 +18,13 @@ export default async function Profile() {
                             <div className="w-32 h-32 rounded-full border-2 overflow-clip">
                                 <Image src={userData.avatar} alt="Avatar" width={128} height={128}></Image>
                             </div>
-                            <div className="w-full flex flex-col items-center mt-8 gap-2">
+                            <div className="w-full flex flex-col items-center sm:mt-8 sm:gap-2 max-sm:mt-3 max-sm:gap-0">
                                 <p>{userData.name}</p>
                                 <p>@{userData.nickname}</p>
                                 <p>{userData.email}</p>
                             </div>
                         </div>
-                        <div className="w-2/4 h-full flex flex-col max-sm:w-full overflow-y-auto sm:pr-16">
+                        <div className="w-2/4 h-full flex flex-col max-sm:w-full overflow-y-auto sm:pr-16 sm:py-8 max-sm:pb-6">
                             <ManageLinks />
                         </div>
                     </div>
