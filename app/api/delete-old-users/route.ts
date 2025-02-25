@@ -1,6 +1,8 @@
 import prisma from "@/prisma/db";
 
 export async function GET() {
+    await prisma.$connect();
+
     const allUsers = await prisma.user.findMany({
         select: {
             lastShortDate: true,

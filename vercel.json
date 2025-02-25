@@ -3,6 +3,10 @@
         {
             "path": "/api/delete-old-users",
             "schedule": "0 0 1 * *"
+        },
+        {
+            "path": "/api/avoid-db-suspension",
+            "schedule": "0 0 * * 0"
         }
     ]
 }
